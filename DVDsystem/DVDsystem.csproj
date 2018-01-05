@@ -48,6 +48,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NVelocity, Version=1.1.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\wujing\wujing\js\NVelocity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -66,7 +70,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ajax.js" />
     <Content Include="packages.config" />
+    <Content Include="Hander\index.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -135,21 +141,18 @@
     <Content Include="Js\owl.carousel.js" />
     <Content Include="Js\simpleCart.min.js" />
     <Content Include="Js\uisearch.js" />
-    <Content Include="template\account.html" />
-    <Content Include="template\checkout.html" />
-    <Content Include="template\contact.html" />
     <Content Include="template\index.html" />
-    <Content Include="template\login.html" />
-    <Content Include="template\products.html" />
-    <Content Include="template\single.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonHelper.cs" />
+    <Compile Include="Hander\index.ashx.cs">
+      <DependentUpon>index.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Hander\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
