@@ -72,6 +72,8 @@
   <ItemGroup>
     <Content Include="ajax.js" />
     <Content Include="image\01.jpg" />
+    <Content Include="image\1.jpg" />
+    <Content Include="image\2.jpg" />
     <Content Include="packages.config" />
     <Content Include="Hander\index.ashx" />
     <Content Include="Hander\CDproduct.ashx" />
@@ -92,46 +94,9 @@
     <Content Include="css\owl.carousel.css" />
     <Content Include="css\style.css" />
     <Content Include="image\b-arrow.png" />
-    <Content Include="image\b1.jpg" />
-    <Content Include="image\b2.jpg" />
-    <Content Include="image\b3.jpg" />
-    <Content Include="image\b4.jpg" />
-    <Content Include="image\b6.jpg" />
-    <Content Include="image\b7.jpg" />
-    <Content Include="image\c1.jpeg" />
-    <Content Include="image\c2.jpeg" />
-    <Content Include="image\c3.jpg" />
     <Content Include="image\close_1.png" />
     <Content Include="image\do.png" />
-    <Content Include="image\f1.png" />
-    <Content Include="image\f2.png" />
-    <Content Include="image\f3.png" />
-    <Content Include="image\f4.png" />
-    <Content Include="image\g1.png" />
-    <Content Include="image\g2.png" />
-    <Content Include="image\g3.png" />
-    <Content Include="image\g4.png" />
-    <Content Include="image\g5.jpg" />
-    <Content Include="image\g6.jpg" />
-    <Content Include="image\g7.jpg" />
-    <Content Include="image\g8.jpg" />
-    <Content Include="image\images.jpg" />
-    <Content Include="image\img-sprite.png" />
-    <Content Include="image\m1.jpg" />
-    <Content Include="image\m2.jpg" />
-    <Content Include="image\m3.jpg" />
-    <Content Include="image\m4.jpg" />
-    <Content Include="image\m5.jpg" />
-    <Content Include="image\m6.jpg" />
-    <Content Include="image\m7.jpg" />
-    <Content Include="image\m8.jpg" />
-    <Content Include="image\m9.jpg" />
-    <Content Include="image\p2.png" />
     <Content Include="image\search.png" />
-    <Content Include="image\si.jpg" />
-    <Content Include="image\si1.jpg" />
-    <Content Include="image\si2.jpg" />
-    <Content Include="image\star.png" />
     <Content Include="image\tick1.png" />
     <Content Include="Js\bootstrap-3.1.1.min.js" />
     <Content Include="Js\bootstrap.js" />
@@ -169,6 +134,7 @@
     <Compile Include="SqlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Mimage\" />
     <Folder Include="Movie\" />
   </ItemGroup>
   <PropertyGroup>
