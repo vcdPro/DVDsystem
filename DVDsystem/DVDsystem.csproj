@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ajax.js" />
+    <Content Include="image\01.jpg" />
     <Content Include="packages.config" />
     <Content Include="Hander\index.ashx" />
     <None Include="Web.Debug.config">

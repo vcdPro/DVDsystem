@@ -273,7 +273,7 @@ h1.navbar-brand a {
 	cursor: pointer;
 }
 .sb-search-submit {
-	background:#000 url('../images/search.png') no-repeat 10px 7px;
+	background:#000 url('../image/search.png') no-repeat 10px 7px;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
     filter: alpha(opacity=0); /* IE 5-7 */
     color: transparent;
@@ -283,7 +283,7 @@ h1.navbar-brand a {
 	-webkit-appearance: none;
 }
 .sb-icon-search {
-   background:#000 url('../images/search.png') no-repeat 10px 7px;
+   background:#000 url('../image/search.png') no-repeat 10px 7px;
 	z-index: 90;
 }
 /* Open state */
@@ -291,7 +291,7 @@ h1.navbar-brand a {
 	width:24%;
 }
 .sb-search.sb-search-open .sb-icon-search,.no-js .sb-search .sb-icon-search {
-	background: #c0c0c0 url('../images/img-sprite.png') no-repeat 0px 1px;
+	background: #c0c0c0 url('../image/img-sprite.png') no-repeat 0px 1px;
 	color: #fff;
 	z-index: 11;
 }
