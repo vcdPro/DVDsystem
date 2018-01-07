@@ -1,11 +1,110 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-	<meta charset="utf-8" />
+    <title>影碟系统</title>
+
+
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../css/owl.carousel.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <script src="../Js/jquery.min.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap-3.1.1.min.js"></script>
+    <script src="../Js/classie.js"></script>
+    <script src="../Js/uisearch.js"></script>
+
+    <script src="../Js/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function () {
+                    $("#owl-demo").owlCarousel({
+                        items: 3,
+                        lazyLoad: true,
+                        autoPlay: true,
+                        pagination: false,
+                    });
+                });
+    </script>
+
 </head>
+
+
+
+<!------------------------------------------------------中间内容------------------------------------------------------>
+
+
 <body>
+    <!--header-->
+    <div class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="top-right">
+                    <ul>
+                        <li class="text"><a href="login.html">登录</a></li>
+                        <li class="text"><a href="login.html">注册</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+
+
+        <div class="header-bottom">
+            <div class="container">
+                <!--/.content-->
+                <div class="content white">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <h1 class="navbar-brand"><a href="index.html">QL影碟出租屋</a></h1>
+                        </div>
+                        <!-----------------------------------------------------菜单----------------------------------------------------------->
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="../Hander/index.ashx">首页</a></li>
+                                <li><a href="../Hander/CDproduct.ashx">影碟介绍</a></li>
+                                <li><a href="../Hander/rentstate.ashx">出借情况</a></li>
+                                <li><a href="../Hander/Helpcilent.ashx">FAQ 帮助中心</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!---------------------------------------------------------------------------------------------------------------------------->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!----------------------------------------------------------------------------------------------------------------------------------->
+    <div class="contener" style="width:1024px;height:auto;border:double;border-color:black;border:3px;text-align:center;">
+        <div  style=" border:3px; margin:0px 0px 0px 0px;width:auto;height:auto;text-align:center;border-color:black;">
+            <input type="search" name="search" placeholder="输入影碟编号/名称进行查询" />
+            <input type="button" value="查询">
+        </div>
+            <div style="margin:20px 0px auto 0px;text-align:center">
+            <table style="text-align:left;font-size:15px;border-color:black;border:3px;">
+                <tr>
+                    <td>影碟名称</td>
+                    <td>影碟ID</td>
+                    <td>出借日期</td>
+                    <td>出借押金</td>
+                    <td>借出用户</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
 </body>
-</html>
+</html

@@ -72,8 +72,12 @@
   <ItemGroup>
     <Content Include="ajax.js" />
     <Content Include="image\01.jpg" />
-    <Content Include="image\1.jpg" />
-    <Content Include="image\2.jpg" />
+    <Content Include="Mimage\1.jpg" />
+    <Content Include="Mimage\2.jpg" />
+    <Content Include="Movie\脱欧分析.mp4" />
+    <Content Include="Movie\脱欧的议院选举.mp4" />
+    <Content Include="Movie\脱欧议会期间的恐怖袭击.mp4" />
+    <Content Include="Movie\英国脱欧的正确姿势.mp4" />
     <Content Include="packages.config" />
     <Content Include="Hander\index.ashx" />
     <Content Include="Hander\CDproduct.ashx" />
@@ -133,10 +137,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mimage\" />
-    <Folder Include="Movie\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
