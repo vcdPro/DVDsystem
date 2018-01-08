@@ -74,6 +74,7 @@
     <Content Include="css\login.css" />
     <Content Include="image\01.jpg" />
     <Content Include="image\34.png" />
+    <Content Include="Js\jquery.min.js" />
     <Content Include="Mimage\1.jpg" />
     <Content Include="Mimage\2.jpg" />
     <Content Include="Movie\脱欧分析.mp4" />
@@ -112,7 +113,6 @@
     <Content Include="Js\jquery-ui.min.js" />
     <Content Include="Js\jquery.flexslider.js" />
     <Content Include="Js\jquery.jscrollpane.min.js" />
-    <Content Include="Js\jquery.min.js" />
     <Content Include="Js\jquery.mousewheel.js" />
     <Content Include="Js\owl.carousel.js" />
     <Content Include="Js\simpleCart.min.js" />
