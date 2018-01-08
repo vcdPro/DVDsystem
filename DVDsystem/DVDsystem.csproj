@@ -86,7 +86,7 @@
     <Content Include="Hander\CDproduct.ashx" />
     <Content Include="Hander\Helpcilent.ashx" />
     <Content Include="Hander\rentstate.ashx" />
-    <Content Include="Hander\yzheng.ashx" />
+    <Content Include="Hander\yzheng2.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -138,8 +138,8 @@
     <Compile Include="Hander\rentstate.ashx.cs">
       <DependentUpon>rentstate.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Hander\yzheng.ashx.cs">
-      <DependentUpon>yzheng.ashx</DependentUpon>
+    <Compile Include="Hander\yzheng2.ashx.cs">
+      <DependentUpon>yzheng2.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlHelper.cs" />

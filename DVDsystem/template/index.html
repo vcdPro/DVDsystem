@@ -47,7 +47,7 @@
         })
 
         function getimg() {//我们就是通过这个函数来异步获取信息的
-            document.getElementById("checkimg").src = "../Hander/yzheng.ashx" + Math.random();
+            document.getElementById("checkimg").src = "../Hander/yzheng2.ashx?" + Math.random();
         }
 
         window.onload = function onLoginLoaded()
@@ -352,9 +352,9 @@
                     </li>
 
                     <li>
-                        <strong>VeriFication:</strong><input class="ipt" type="text" id="verification" placeholder="the verification!" name="ver" value="" size="20" />
-                        <img src="../Hander/yzheng.ashx" alt="clickchange" height="25" onclick="getimg()" id="checkimg" />
-
+                        <strong>VeriFication:</strong>
+                        <input class="ipt" type="text" id="verification" placeholder="the verification!" name="ver" value="" size="20" />
+                        <img src="../Hander/yzheng2.ashx" alt="clickchange" height="25" onclick="getimg()" id="checkimg" />
                         <div id="checkcodeerror"></div>
                     </li>
                     <li>   <input type="checkbox" id="chkRememberPwd" />RemenBer Me</li>

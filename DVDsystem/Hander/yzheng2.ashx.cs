@@ -2,29 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.SessionState;
-using System.Web.Services;
-using System.IO;
 using System.Drawing;
+using System.IO;
+using System.Web.SessionState;
 
 
-namespace DVDsystem
+namespace DVDsystem.Hander
 {
-
-    public class yzheng : IHttpHandler ,IRequiresSessionState
+    /// <summary>
+    /// yzheng2 的摘要说明
+    /// </summary>
+    public class yzheng2 : IHttpHandler,IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
         {
-   
             context.Response.ContentType = "text/img";
             string str = getRandomValidate(5);
-            context.Session["check"] = str; //这一步是为了将验证码写入Session，进行验证，不能缺省，也可一使用cookie
+            context.Session["check"] = str.ToString(); //这一步是为了将验证码写入Session，进行验证，不能缺省，也可一使用cookie
             getImageValidate(str, context);
-         }
-
-
-        //得到随机字符串,长度自己定义
+        }
         private string getRandomValidate(int len)
         {
             int num;
@@ -104,10 +101,6 @@ namespace DVDsystem
                 img.SetPixel(x, y, Color.FromArgb(col));
             }
         }
-
-
-
-
         public bool IsReusable
         {
             get
