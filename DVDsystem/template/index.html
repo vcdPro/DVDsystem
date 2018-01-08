@@ -7,8 +7,8 @@
 
 <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="../css/owl.carousel.css" rel="stylesheet">
-<link href="../css/login.css" rel="stylesheet"/>
+<link href="../css/owl.carousel.css" rel="stylesheet" type="text/css" media="all">
+<link href="../css/login.css" rel="stylesheet"type="text/css" media="all"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -47,7 +47,7 @@
         })
 
         function getimg() {//我们就是通过这个函数来异步获取信息的
-            document.getElementById("checkimg").src = "yzheng.ashx?" + Math.random();
+            document.getElementById("checkimg").src = "../Hander/yzheng.ashx" + Math.random();
         }
 
         window.onload = function onLoginLoaded()
@@ -56,7 +56,6 @@
             GetLastUser();
 
         }
-
 
         function GetLastUser() {
             var id = "C005-7D5B-4231-8CEA-1693";//GUID标识符  setcookie(name,value,expire,path,domain,secure)
@@ -353,9 +352,8 @@
                     </li>
 
                     <li>
-                        <strong>VeriFication:</strong><input class="ipt" type="text" id="verification"
-                                                             placeholder="the verification!" name="ver" value="" size="20" />
-                        <img src="../Hander/yzheng.ashx" alt="clickchange" height="25px" onclick="getimg()" id="checkimg" />
+                        <strong>VeriFication:</strong><input class="ipt" type="text" id="verification" placeholder="the verification!" name="ver" value="" size="20" />
+                        <img src="../Hander/yzheng.ashx" clickchange" height="25px" onclick="getimg()" id="checkimg" />
                         <div id="checkcodeerror"></div>
                     </li>
                     <li>   <input type="checkbox" id="chkRememberPwd" />RemenBer Me</li>
@@ -379,7 +377,7 @@
                     <a href="../Hander/index.ashx" class="button"> Get in Store </a>
                 </div>
                 <div class="col-md-6 banner-grid1">
-                    <img src=" ../image/01.jpg" class="img-responsive" alt="" />
+                    <img src="../image/01.jpg" class="img-responsive" alt="" />
                 </div>
                 <div class="clearfix"></div>
             </div>
