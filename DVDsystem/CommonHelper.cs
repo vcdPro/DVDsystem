@@ -6,7 +6,7 @@ using NVelocity.App;
 using NVelocity.Runtime;
 using NVelocity;
 
-namespace WebApplication3
+namespace DVDsystem
 {
     public class CommonHelper
     {

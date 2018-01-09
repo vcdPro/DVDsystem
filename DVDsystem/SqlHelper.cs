@@ -6,7 +6,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace WebApplication3
+namespace DVDsystem
 {
     public static class  SqlHelper
     {

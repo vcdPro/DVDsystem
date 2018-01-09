@@ -75,6 +75,7 @@
     <Content Include="image\01.jpg" />
     <Content Include="image\34.png" />
     <Content Include="Js\jquery.min.js" />
+    <Content Include="Js\Login.js" />
     <Content Include="Mimage\1.jpg" />
     <Content Include="Mimage\2.jpg" />
     <Content Include="Movie\脱欧分析.mp4" />
@@ -87,6 +88,10 @@
     <Content Include="Hander\Helpcilent.ashx" />
     <Content Include="Hander\rentstate.ashx" />
     <Content Include="Hander\yzheng2.ashx" />
+    <Content Include="Hander\Getpassword.ashx" />
+    <Content Include="Hander\Login.ashx" />
+    <Content Include="Hander\rememberme.ashx" />
+    <Content Include="Hander\register.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -120,6 +125,7 @@
     <Content Include="template\CDproduct.html" />
     <Content Include="template\Helpcilent.html" />
     <Content Include="template\index.html" />
+    <Content Include="template\register.html" />
     <Content Include="template\rentstate.html" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -129,11 +135,23 @@
     <Compile Include="Hander\CDproduct.ashx.cs">
       <DependentUpon>CDproduct.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Hander\Getpassword.ashx.cs">
+      <DependentUpon>Getpassword.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Hander\Helpcilent.ashx.cs">
       <DependentUpon>Helpcilent.ashx</DependentUpon>
     </Compile>
     <Compile Include="Hander\index.ashx.cs">
       <DependentUpon>index.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Hander\Login.ashx.cs">
+      <DependentUpon>Login.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Hander\register.ashx.cs">
+      <DependentUpon>register.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Hander\rememberme.ashx.cs">
+      <DependentUpon>rememberme.ashx</DependentUpon>
     </Compile>
     <Compile Include="Hander\rentstate.ashx.cs">
       <DependentUpon>rentstate.ashx</DependentUpon>

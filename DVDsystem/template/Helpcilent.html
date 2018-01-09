@@ -1,11 +1,136 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-	<meta charset="utf-8" />
+    <title>影碟系统</title>
+
+
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../css/owl.carousel.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../css/login.css" rel="stylesheet" type="text/css" media="all" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../Js/jquery.min.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../Js/classie.js"></script>
+    <script type="text/javascript" src="../Js/uisearch.js"></script>
+    <script type="text/javascript" src="../Js/owl.carousel.js"></script>
+    <script type="text/javascript" src="../ajax.js"></script>
+    <script type="text/javascript" src="../Js/Login.js"></script>
+
 </head>
+
+
+
+<!------------------------------------------------------中间内容------------------------------------------------------>
+
+
 <body>
+    <!--header-->
+    <div class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="top-right">
+                    <ul>
+                        <li class="text"><a class="theme-login" href="javascript:;" onclick="prevent();">登录</a></li>
+                        <li class="text"><a class="theme-login" href="../Hander/register.ashx">注册</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+
+
+        <div class="header-bottom">
+            <div class="container">
+                <!--/.content-->
+                <div class="content white">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <h1 class="navbar-brand"><a href="index.html">QL影碟出租屋</a></h1>
+                        </div>
+                        <!-----------------------------------------------------菜单----------------------------------------------------------->
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="../Hander/index.ashx">首页</a></li>
+                                <li><a href="../Hander/CDproduct.ashx">影碟介绍</a></li>
+                                <li><a href="../Hander/rentstate.ashx">出借情况</a></li>
+                                <li><a href="../Hander/Helpcilent.ashx">FAQ 帮助中心</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!---------------------------------------------------------------------------------------------------------------------------->
+
+                <div class="search-box">
+                    <div id="sb-search" class="sb-search">
+                        <form>
+                            <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
+                            <input class="sb-search-submit" type="submit" value="">
+                            <span class="sb-icon-search"> </span>
+                        </form>
+                    </div>
+                </div>
+
+                <script> new UISearch( document.getElementById( 'sb-search' ) ); </script>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-----------------------------------------登录遮罩层---------------------------------->
+    <div class="theme-popover">
+        <div class="theme-poptit">
+            <a href="javascript:;" title="close" id="button" class="close">×</a>
+            <h3>Login or register</h3>
+        </div>
+        <form class="theme-signin">
+            <div class="theme-popbod dform">
+                <ol>
+                    <li>
+                        <strong>用户名：</strong><input class="ipt " id="txtUserName" placeholder="name." type="text" name="log" value="" maxlength="9"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                    <li>
+                        <strong>密  码：</strong><input class="ipt" id="txtPassword" placeholder=" password." type="password" name="pwd" value="" maxlength="9" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                    <li><div id="usererror"></div></li>
+                    <li>
+                        <strong>验 证 码</strong>
+                        <input class="ipt" type="text" id="verification" placeholder="the verification!" name="ver" value="" maxlength="5" />
+                        <img src="../Hander/yzheng2.ashx" alt="clickchange" height="25" onclick="getimg()" id="checkimg" />
+                        <div id="checkcodeerror"></div>
+                    </li>
+                    <li>    <input type="checkbox" id="chkRememberPwd" />记住 密码 <input type="checkbox" id="Adminlogin" />管理员登录</li>
+                    <li>
+                        <a href="../Hander/register.ashx"> <input class="btn btn-primary" type="button" name="submit" value="注册" /></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="btn btn-primary" type="button" name="submit" onclick="checkuser()" value="登录." />
+                        <br />
+
+                    </li>
+                </ol>
+            </div>
+        </form>
+    </div>
+    <div class="theme-popover-mask"></div>
+    <!--------------------------------------------------------------------------------------------------->
+
+    <div class="banner-section">
+        <div class="container">
+            <h1>帮助1</h1>
+            
+        </div>
+    </div>
 
 </body>
 </html>
