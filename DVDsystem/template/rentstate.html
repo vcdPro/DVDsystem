@@ -11,34 +11,47 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-
     <script src="../Js/jquery.min.js"></script>
     <script type="text/javascript" src="../Js/bootstrap-3.1.1.min.js"></script>
     <script src="../Js/classie.js"></script>
     <script src="../Js/uisearch.js"></script>
-
     <script src="../Js/owl.carousel.js"></script>
-    <script>
-    $(document).ready(function () {
-                    $("#owl-demo").owlCarousel({
-                        items: 3,
-                        lazyLoad: true,
-                        autoPlay: true,
-                        pagination: false,
-                    });
-                });
-    </script>
+    <style type="text/css">
+        #my-form {
+            width: 700px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding-top: 34px;
+            border-radius: 3px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #register {
+            width: 1024px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 34px;
+            overflow: hidden;
+        }
+
+        #my-form li {
+            /*这部分写的是用户输入的部分，就不要设置靠左的流布局了,默认上下布局。而且没有必要严格规划div，随意格式就好-guyu*/
+            padding: 5px;
+            text-align: left;
+            width: 300px;
+            list-style: none; /*去掉列表项的样式(小圆点)*/
+            font-size: 15px;
+            color: #000000;
+        }
+    </style>
+
 
 </head>
 
 
 
 <!------------------------------------------------------中间内容------------------------------------------------------>
-
-
 <body>
     <!--header-->
     <div class="header">
@@ -88,23 +101,24 @@
         </div>
     </div>
     <!----------------------------------------------------------------------------------------------------------------------------------->
-    <div class="contener" style="width:1024px;height:auto;border:double;border-color:black;border:3px;text-align:center;">
-        <div  style=" border:3px; margin:0px 0px 0px 0px;width:auto;height:auto;text-align:center;border-color:black;">
+    <div id="my-form">
+        <div id="search">
             <input type="search" name="search" placeholder="输入影碟编号/名称进行查询" />
             <input type="button" value="查询">
         </div>
-            <div style="margin:20px 0px auto 0px;text-align:center">
-             
-                <table width="620px" cellspacing="0" cellpadding="5" border="1">
-                    <tr bgcolor="#CCCCCC">
-                        <th width="220" align="left">影碟名称 </th>
-                        <th width="180" align="left">影碟ID </th>
-                        <th width="100" align="center">出借日期 </th>
-                        <th width="80" align="right">出借押金 </th>
-                        <th width="100" align="right">借出用户 </th>
-                    </tr>
-                    </table>
-</div>
+        <div id="show">
+
+            <table width="620px" cellspacing="0" cellpadding="5" border="1">
+                <tr bgcolor="#CCCCCC">
+                    <th width="220" align="left">影碟名称 </th>
+                    <th width="180" align="left">影碟ID </th>
+                    <th width="100" align="center">出借日期 </th>
+                    <th width="80" align="right">出借押金 </th>
+                    <th width="100" align="right">借出用户 </th>
+                </tr>
+            </table>
+        </div>
+
     </div>
 
 </body>

@@ -79,12 +79,12 @@
     <Content Include="Js\jquery.idealforms.js" />
     <Content Include="Js\jquery.min.js" />
     <Content Include="Js\Login.js" />
-    <Content Include="Mimage\1.jpg" />
-    <Content Include="Mimage\2.jpg" />
-    <Content Include="Movie\脱欧分析.mp4" />
-    <Content Include="Movie\脱欧的议院选举.mp4" />
-    <Content Include="Movie\脱欧议会期间的恐怖袭击.mp4" />
-    <Content Include="Movie\英国脱欧的正确姿势.mp4" />
+    <Content Include="upload\pic\1.jpg" />
+    <Content Include="upload\pic\2.jpg" />
+    <Content Include="upload\MV\02.mp4" />
+    <Content Include="upload\MV\01.mp4" />
+    <Content Include="upload\MV\03.mp4" />
+    <Content Include="upload\MV\04.mp4" />
     <Content Include="packages.config" />
     <Content Include="Hander\index.ashx" />
     <Content Include="Hander\CDproduct.ashx" />
@@ -95,6 +95,7 @@
     <Content Include="Hander\Login.ashx" />
     <Content Include="Hander\rememberme.ashx" />
     <Content Include="Hander\register.ashx" />
+    <Content Include="Hander\Ryzheng.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -125,9 +126,9 @@
     <Content Include="Js\owl.carousel.js" />
     <Content Include="Js\simpleCart.min.js" />
     <Content Include="Js\uisearch.js" />
+    <Content Include="template\CDinformation.html" />
     <Content Include="template\CDproduct.html" />
     <Content Include="template\Helpcilent.html" />
-    <Content Include="template\in2.html" />
     <Content Include="template\index.html" />
     <Content Include="template\register.html" />
     <Content Include="template\rentstate.html" />
@@ -159,6 +160,9 @@
     </Compile>
     <Compile Include="Hander\rentstate.ashx.cs">
       <DependentUpon>rentstate.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Hander\Ryzheng.ashx.cs">
+      <DependentUpon>Ryzheng.ashx</DependentUpon>
     </Compile>
     <Compile Include="Hander\yzheng2.ashx.cs">
       <DependentUpon>yzheng2.ashx</DependentUpon>

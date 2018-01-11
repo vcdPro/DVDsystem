@@ -19,6 +19,16 @@
     <script type="text/javascript" src="../Js/owl.carousel.js"></script>
     <script type="text/javascript" src="../ajax.js"></script>
     <script type="text/javascript" src="../Js/Login.js"></script>
+    <script type="text/javascript">
+        function reset() {
+            document.getElementById("userid").value = "";
+            document.getElementById("username").value = "";
+            document.getElementById("pass").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("yzhengma").value = "";
+        }
+
+    </script>
 
     <style type="text/css">
     
@@ -48,6 +58,12 @@
                 font-size: 15px;
                 color: #000000;
             }
+        #yzhengma {
+            text-align:left;
+            width:100px;
+            font-size:15px;
+            color:#000000;
+        }
       
     </style>
 
@@ -166,9 +182,11 @@
                 <input name="sex" id="sex" type="radio" value="男" checked="checked" /><label>男</label>
                 <input name="sex" id="sex" type="radio" value="女" /><label>女</label></li>
                 <li><label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</label><input id="pass" name="password" type="password" /> </li>
-                <li><label>身份证号:</label><input id="email" name="email" data-ideal="required email" type="email" /> </li>
+                <li><label>身份证号:</label><input id="userid" name="email" data-ideal="required email" type="email" /> </li>
                 <li><label>电话号码:</label><input id="phone" type="text" /></li>
-                <li><input type="button" width="20" height="30" value="提交" />&nbsp;&nbsp;&nbsp;<input type="button" width="20" height="30"value="重置" /></li>
+                <li><label>验&nbsp;证&nbsp;&nbsp;码:</label><input id="yzhengma" type="text" maxlength="5"/>
+                    <input type="image" src="../Hander/Ryzheng.ashx" alt="clickchange" onclick="getimg()" id="checkimg"/></li>
+                <li><input type="button" width="20" height="30" value="提交" />&nbsp;&nbsp;&nbsp;<input type="button" width="20"         height="30"value="重置" onclick="reset()" /></li>
             </ul>
         </div>
        
