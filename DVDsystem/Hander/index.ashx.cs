@@ -19,11 +19,11 @@ namespace DVDsystem.Hander
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/html";
-
+            string search = context.Request["keyword"];
 
             //--------------------------------------------------------登录检查----------------------------------------------
 
-            string search = context.Request["keyword"];
+           
             string username = "";
             string username2 = "";
             string loginuser = "";
@@ -48,6 +48,8 @@ namespace DVDsystem.Hander
 
                 
             }
+        //----------------------------------------------------------------------
+                if()
       
     //private string Md5jiami (string encryptString)//md5加密是不可逆的过程,只需将每次用户输入的密码进行比对一次即可,可以加盐值进行加密
 

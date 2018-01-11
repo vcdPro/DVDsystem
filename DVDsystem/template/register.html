@@ -27,7 +27,32 @@
             document.getElementById("phone").value = "";
             document.getElementById("yzhengma").value = "";
         }
+        function register()
+        {
+            var sexradio = document.getElementsByName("sex");
+            var sex;
+            usernamecheck = new RegExp("^[a-zA-Z][a-zA-Z0-9_]{0,8}$");//字母开头的最多9位账户
+            passworldcheck = new RegExp("^[0-9][0-9]{0,8}$");//9位密码
+            checkcode = new RegExp("[0-9]{5}$");
 
+            for(var i=0;i<sexradio.length;i++)
+                if(sexradio[i].checked)
+                { sex = sexradio[i].value; }
+            var userid = document.getElementById("userid").value;
+            var username = document.getElementById("username").value;
+            var pass = document.getElementById("pass").value;
+            var phone = document.getElementById("phone").value;
+            var yzheng = document.getElementById("yzhengma").value;
+            if (yzheng.match(checkcode) && username.match(usernamecheck) && pass.match(passworldcheck))
+                ajax("../Hander/register?userid=" + userid + "&username=" + username + "&sex=" + sex + "&pass=" + pass + "&phone=" + phone + "&yzheng=" + yzheng, function (responsetext) { if (responsetext == "checkerro") { alert("验证码不正确"); } else windows.location.href = "index.ashx" });
+            else
+                if (username.match(usernamecheck) == null) {
+                    alert("用户名必须字母开头且最大9位");
+                }
+                else if (yzheng.match(checkcode) == null) {
+                    alert("验证码输入有误");
+                }
+                else alert("密码必须用9位数字");        }
     </script>
 
     <style type="text/css">
@@ -77,20 +102,7 @@
 <body>
     <!--header-->
     <div class="header">
-        <div class="header-top">
-            <div class="container">
-                <div class="top-right">
-                    <ul>
-                        <li class="text"><a class="theme-login" href="javascript:;" onclick="prevent();">登录</a></li>
-                        <li class="text"><a class="theme-login" href="../Hander/register.ashx">注册</a></li>
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-
-
-
+      
         <div class="header-bottom">
             <div class="container">
                 <!--/.content-->
@@ -186,7 +198,7 @@
                 <li><label>电话号码:</label><input id="phone" type="text" /></li>
                 <li><label>验&nbsp;证&nbsp;&nbsp;码:</label><input id="yzhengma" type="text" maxlength="5"/>
                     <input type="image" src="../Hander/Ryzheng.ashx" alt="clickchange" onclick="getimg()" id="checkimg"/></li>
-                <li><input type="button" width="20" height="30" value="提交" />&nbsp;&nbsp;&nbsp;<input type="button" width="20"         height="30"value="重置" onclick="reset()" /></li>
+                <li><input type="button" width="20" onclick="register()" height="30" value="提交" />&nbsp;&nbsp;&nbsp;<input type="button" width="20"         height="30"value="重置" onclick="reset()" /></li>
             </ul>
         </div>
        

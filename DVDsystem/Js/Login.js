@@ -22,6 +22,11 @@ window.onload = function onLoginLoaded()
     GetLastUser();
 
 }
+function search()
+{
+    var search = document.getElementById("search").value;
+
+}
 
 function getimg() {//我们就是通过这个函数来异步获取信息的
     document.getElementById("checkimg").src = "../Hander/yzheng2.ashx?" + Math.random();
