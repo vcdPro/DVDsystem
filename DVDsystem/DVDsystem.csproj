@@ -118,13 +118,11 @@
     <Content Include="Js\bootstrap-3.1.1.min.js" />
     <Content Include="Js\bootstrap.js" />
     <Content Include="Js\classie.js" />
-    <Content Include="Js\imagezoom.js" />
     <Content Include="Js\jquery-ui.min.js" />
     <Content Include="Js\jquery.flexslider.js" />
     <Content Include="Js\jquery.jscrollpane.min.js" />
     <Content Include="Js\jquery.mousewheel.js" />
     <Content Include="Js\owl.carousel.js" />
-    <Content Include="Js\simpleCart.min.js" />
     <Content Include="Js\uisearch.js" />
     <Content Include="template\CDinformation.html" />
     <Content Include="template\CDproduct.html" />
