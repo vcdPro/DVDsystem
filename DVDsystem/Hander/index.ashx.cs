@@ -44,12 +44,16 @@ namespace DVDsystem.Hander
 
                     if (context.Session[username2] != null && !context.Session[username2].ToString().Equals(""))
                         username = user.Value.ToString();
-                }  
+                }
+
+            var Data = new { loginuser = loginuser };
+            string html = CommonHelper.RenderHtml("../template/index.html", Data);
+            context.Response.Write(html);
 
                 
             }
         //----------------------------------------------------------------------
-                if()
+          
       
     //private string Md5jiami (string encryptString)//md5加密是不可逆的过程,只需将每次用户输入的密码进行比对一次即可,可以加盐值进行加密
 

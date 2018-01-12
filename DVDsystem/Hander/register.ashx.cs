@@ -31,7 +31,7 @@ namespace DVDsystem.Hander
             }
             else
             {
-                SqlHelper.ExecuteDataTable("insert into User_t(name,password,sex,idcard,phone) value(@name,@password,@sex,@idcard,@phone)", new SqlParameter("@name", username), new SqlParameter("@password", pass), new SqlParameter("@sex", sex), new SqlParameter("@idcard", userid), new SqlParameter("@phone", phone));
+                SqlHelper.ExecuteDataTable("insert into User_t(name,password,sex,idcard,phone) values(@name,@password,@sex,@idcard,@phone)", new SqlParameter("@name", username), new SqlParameter("@password", pass), new SqlParameter("@sex", sex), new SqlParameter("@idcard", userid), new SqlParameter("@phone", phone));
                 context.Session["C151-7D5B-4231-8CEA-1693"]=username;
                 context.Response.Write("complement");
             }

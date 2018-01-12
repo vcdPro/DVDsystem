@@ -44,7 +44,7 @@
             var phone = document.getElementById("phone").value;
             var yzheng = document.getElementById("yzhengma").value;
             if (yzheng.match(checkcode) && username.match(usernamecheck) && pass.match(passworldcheck))
-                ajax("../Hander/register?userid=" + userid + "&username=" + username + "&sex=" + sex + "&pass=" + pass + "&phone=" + phone + "&yzheng=" + yzheng, function (responsetext) { if (responsetext == "checkerro") { alert("验证码不正确"); } else windows.location.href = "index.ashx" });
+                ajax("../Hander/register.ashx?userid=" + userid + "&username=" + username + "&sex=" + sex + "&pass=" + pass + "&phone=" + phone + "&yzheng=" + yzheng, function (responsetext) { if (responsetext == "checkerro") { alert("验证码不正确"); } else window.location.href = "../Hander/index.ashx" });
             else
                 if (username.match(usernamecheck) == null) {
                     alert("用户名必须字母开头且最大9位");
@@ -52,7 +52,16 @@
                 else if (yzheng.match(checkcode) == null) {
                     alert("验证码输入有误");
                 }
-                else alert("密码必须用9位数字");        }
+            else alert("密码必须用9位数字");
+}
+
+        function getRimg()
+        {
+
+            document.getElementById("checkRimg").src = "../Hander/Ryzheng.ashx?" + Math.random();
+        }
+
+
     </script>
 
     <style type="text/css">
@@ -171,7 +180,7 @@
                     </li>
                     <li>    <input type="checkbox" id="chkRememberPwd" />记住 密码 <input type="checkbox" id="Adminlogin" />管理员登录</li>
                     <li>
-                        <a href="../Hander/register.ashx"> <input class="btn btn-primary" type="button" name="submit" value="注册" /></a>
+                        <a href="register.html"> <input class="btn btn-primary" type="button" name="submit" value="注册" /></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <input class="btn btn-primary" type="button" name="submit" onclick="checkuser()" value="登录." />
                         <br />
@@ -197,7 +206,7 @@
                 <li><label>身份证号:</label><input id="userid" name="email" data-ideal="required email" type="email" /> </li>
                 <li><label>电话号码:</label><input id="phone" type="text" /></li>
                 <li><label>验&nbsp;证&nbsp;&nbsp;码:</label><input id="yzhengma" type="text" maxlength="5"/>
-                    <input type="image" src="../Hander/Ryzheng.ashx" alt="clickchange" onclick="getimg()" id="checkimg"/></li>
+                    <input type="image" src="../Hander/Ryzheng.ashx" alt="clickchange" onclick="getRimg()" id="checkRimg"/></li>
                 <li><input type="button" width="20" onclick="register()" height="30" value="提交" />&nbsp;&nbsp;&nbsp;<input type="button" width="20"         height="30"value="重置" onclick="reset()" /></li>
             </ul>
         </div>

@@ -22,11 +22,7 @@ window.onload = function onLoginLoaded()
     GetLastUser();
 
 }
-function search()
-{
-    var search = document.getElementById("search").value;
 
-}
 
 function getimg() {//我们就是通过这个函数来异步获取信息的
     document.getElementById("checkimg").src = "../Hander/yzheng2.ashx?" + Math.random();
@@ -95,7 +91,7 @@ function lastcheck()
     var checkcode = document.getElementById("verification").value;
     var admin = "";
     if (document.getElementById("Adminlogin").checked == true)
-        var admin = "true";
+        var admin = "ture";
     ajax("login.ashx?username=" + username + "&password=" + password + "&checkcode=" + checkcode+"&Admin="+admin, function (responsetext) {
         if (responsetext == "usererror") {
             document.getElementById("usererror").innerHTML = "该用户不存在或者密码错误！";
@@ -126,7 +122,7 @@ function lastcheck()
 
             slideup();
 
-            window.location.href = "index.ashx";//刷新页面
+            window.location.href = "../Hander/index.ashx";//刷新页面
         }
     })
 }

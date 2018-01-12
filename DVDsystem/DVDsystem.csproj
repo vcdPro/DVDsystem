@@ -96,6 +96,7 @@
     <Content Include="Hander\rememberme.ashx" />
     <Content Include="Hander\register.ashx" />
     <Content Include="Hander\Ryzheng.ashx" />
+    <Content Include="Hander\CDinformation.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -135,6 +136,9 @@
   <ItemGroup>
     <Compile Include="Comment.cs" />
     <Compile Include="CommonHelper.cs" />
+    <Compile Include="Hander\CDinformation.ashx.cs">
+      <DependentUpon>CDinformation.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Hander\CDproduct.ashx.cs">
       <DependentUpon>CDproduct.ashx</DependentUpon>
     </Compile>

@@ -26,8 +26,13 @@
             <div class="container">
                 <div class="top-right">
                     <ul>
+                        #if(!$Data.loginuser.equals(""))
+                        <li class="text"><a class="theme-login" href="javascript:;" onclick="prevent();">$Data.loginuser 已登录</a></li>
+                        <li class="text"><a class="theme-login" href="../Hander/rentstate.ashx?username=" +$Data.loginuser>我的影碟记录</a></li>
+                        #else
                         <li class="text"><a class="theme-login" href="javascript:;" onclick="prevent();">登录</a></li>
-                        <li class="text"><a class="theme-login" href="../Hander/register.ashx">注册</a></li>
+                        <li class="text"><a class="theme-login" href="../template/register.html">注册</a></li>
+                        #end
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -95,7 +100,7 @@
                     </li>
                     <li>    <input type="checkbox" id="chkRememberPwd" />记住 密码 <input type="checkbox" id="Adminlogin" />管理员登录</li>
                     <li>
-                        <a href="../Hander/register.ashx"> <input class="btn btn-primary" type="button" name="submit" value="注册" /></a>
+                        <a href="../template/register.html"> <input class="btn btn-primary" type="button" name="submit" value="注册" /></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <input class="btn btn-primary" type="button" name="submit" onclick="checkuser()" value="登录." />
                         <br />
@@ -116,7 +121,7 @@
                     <div class="col-md-4 single-grid1">
                         <h2>影片欣赏</h2>
                         <video controls="controls">
-                            <source src="../upload/MV/01.mp4" type="video/mp4" />
+                            <source src="$Data.CD.url" type="video/mp4" />
                       
                         </video>
                     </div>
@@ -124,11 +129,11 @@
               
                     </div>
                     <div class="col-md-4 single-grid simpleCart_shelfItem">
-                        <h3>Obey Wasted Years Camo Zip Bandeau Bikini Top</h3>
-                        <p>Condition  New With the boom of the swimwear market, there are so many places providing swimming costumes that you may not know where to look first. If you want to facilitate your search, drop in at our one-stop store, and you’ll be able to equip yourself properly for water activities.</p>   
+                        <h3>$Data.CD.name</h3>
+                        <p>Condition  New With the boom of the swimwear market,.</p>   
                         <div class="galry">
                             <div class="prices">
-                                <h5 class="item_price">$95.00</h5>
+                                <h5 class="item_price">$Data.CD.price RMB</h5>
                             </div>
                             <div class="rating">
                                 <span>☆</span>
@@ -140,8 +145,13 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="tag">
-                            <p>分类 : <a href="#"> Bikinis </a></p>
-                            <p>主演 : <a href="#"> Lorem ipsum </a></p>
+                            #foreach($typeid in $Data.CDtype )
+                                    #if($typeid.id == $Data.CD.typid)
+                                     <p>分类 : <a href="#">$typeid.name </a></p>
+                                     <p>主演 : <a href="#">$Data.CD.star </a></p>
+                            #end
+                            #end
+                            
                         </div>
                     </div>
                     
@@ -164,13 +174,13 @@
                             <div class="panel-body">
                                 <div class="related-products">
                                     <div class="container">
-                                        
+                                        #foreach($otherCD in $Data.otherCD)
                                         <div class="product-model-sec single-product-grids">
                                             <div class="product-grid single-product">
                                                 <a href="single.html">
                                                     <div class="more-product"><span> </span></div>
                                                     <div class="product-img b-link-stripe b-animate-go  thickbox">
-                                                        <img src="images/m1.jpg" class="img-responsive" alt="">
+                                                        <img src="$otherCD.imageurl" class="img-responsive" alt="">
                                                         <div class="b-wrapper">
                                                             <h4 class="b-animate b-from-left  b-delay03">
                                                                 <button> + </button>
@@ -180,90 +190,19 @@
                                                 </a>
                                                 <div class="product-info simpleCart_shelfItem">
                                                     <div class="product-info-cust prt_name">
-                                                        <h4>Product #1</h4>
-                                                        <span class="item_price">$187.95</span>
+                                                        <h4>$otherCD.name</h4>
+                                                        <span class="item_price">$otherCD.price</span>
                                                         <div class="ofr">
-                                                            <p class="pric1"><del>Rs 280</del></p>
-                                                            <p class="disc">[12% Off]</p>
+                                                            <p class="pric1"><del></del></p>
+                                                            <p class="disc"></p>
                                                         </div>
                                                         <div class="clearfix"> </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="product-grid single-product">
-                                                <a href="single.html">
-                                                    <div class="more-product"><span> </span></div>
-                                                    <div class="product-img b-link-stripe b-animate-go  thickbox">
-                                                        <img src="images/m2.jpg" class="img-responsive" alt="">
-                                                        <div class="b-wrapper">
-                                                            <h4 class="b-animate b-from-left  b-delay03">
-                                                                <button> + </button>
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <div class="product-info simpleCart_shelfItem">
-                                                    <div class="product-info-cust prt_name">
-                                                        <h4>Product #1</h4>
-                                                        <span class="item_price">$187.95</span>
-                                                        <div class="ofr">
-                                                            <p class="pric1"><del>Rs 280</del></p>
-                                                            <p class="disc">[12% Off]</p>
-                                                        </div>
-                                                        <div class="clearfix"> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-grid single-product">
-                                                <a href="single.html">
-                                                    <div class="more-product"><span> </span></div>
-                                                    <div class="product-img b-link-stripe b-animate-go  thickbox">
-                                                        <img src="images/m3.jpg" class="img-responsive" alt="">
-                                                        <div class="b-wrapper">
-                                                            <h4 class="b-animate b-from-left  b-delay03">
-                                                                <button> + </button>
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <div class="product-info simpleCart_shelfItem">
-                                                    <div class="product-info-cust prt_name">
-                                                        <h4>Product #1</h4>
-                                                        <span class="item_price">$187.95</span>
-                                                        <div class="ofr">
-                                                            <p class="pric1"><del>Rs 280</del></p>
-                                                            <p class="disc">[12% Off]</p>
-                                                        </div>
-                                                        <div class="clearfix"> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-grid single-product">
-                                                <a href="single.html">
-                                                    <div class="more-product"><span> </span></div>
-                                                    <div class="product-img b-link-stripe b-animate-go  thickbox">
-                                                        <img src="images/m4.jpg" class="img-responsive" alt="">
-                                                        <div class="b-wrapper">
-                                                            <h4 class="b-animate b-from-left  b-delay03">
-                                                                <button> + </button>
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <div class="product-info simpleCart_shelfItem">
-                                                    <div class="product-info-cust prt_name">
-                                                        <h4>Product #1</h4>
-                                                        <span class="item_price">$187.95</span>
-                                                        <div class="ofr">
-                                                            <p class="pric1"><del>Rs 280</del></p>
-                                                            <p class="disc">[12% Off]</p>
-                                                        </div>
-                                                        <div class="clearfix"> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </div>                                  
                                             <div class="clearfix"> </div>
                                         </div>
+                                        #end
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +222,7 @@
             </div>
         </div>
         <!-- collapse -->
-       
+       </div>
     </div> 
 
 </body>
