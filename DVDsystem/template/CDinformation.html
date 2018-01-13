@@ -27,7 +27,7 @@
                 <div class="top-right">
                     <ul>
                         #if(!$Data.loginuser.equals(""))
-                        <li class="text"><a class="theme-login" href="javascript:;" onclick="prevent();">$Data.loginuser 已登录</a></li>
+                        <li class="text"><a class="theme-login">$Data.loginuser 已登录</a>&nbsp;&nbsp;<a class="theme-login" onclick="logout()"> 退出登录</a></li>
                         <li class="text"><a class="theme-login" href="../Hander/rentstate.ashx?username=" +$Data.loginuser>我的影碟记录</a></li>
                         #else
                         <li class="text"><a class="theme-login" href="javascript:;" onclick="prevent();">登录</a></li>
@@ -98,7 +98,7 @@
                         <img src="../Hander/yzheng2.ashx" alt="clickchange" height="25" onclick="getimg()" id="checkimg" />
                         <div id="checkcodeerror"></div>
                     </li>
-                    <li>    <input type="checkbox" id="chkRememberPwd" />记住 密码 <input type="checkbox" id="Adminlogin" />管理员登录</li>
+                    <li>     <input type="checkbox" checked="checked" id="chkRememberPwd" />记住 密码 <input type="checkbox" id="Adminlogin" />管理员登录</li>
                     <li>
                         <a href="../template/register.html"> <input class="btn btn-primary" type="button" name="submit" value="注册" /></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -120,7 +120,7 @@
                 <div class="single-grids">
                     <div class="col-md-4 single-grid1">
                         <h2>影片欣赏</h2>
-                        <video controls="controls">
+                        <video controls="controls" width="750" height="400">
                             <source src="$Data.CD.url" type="video/mp4" />
                       
                         </video>
@@ -130,7 +130,8 @@
                     </div>
                     <div class="col-md-4 single-grid simpleCart_shelfItem">
                         <h3>$Data.CD.name</h3>
-                        <p>Condition  New With the boom of the swimwear market,.</p>   
+                        <p>It was all very final on that gangway and I was grant too in my over coat. I cut quite a figure, and I was getting off, guaranteed. That wasn't the problem.4、It wasn't what I saw that stopped me, Max, it was what I didn't see. Do you understand that? What I didn't see.5、In all that sprawling city, there was everything except an end. There was no end.6、What I did not see was where the whole thing came to an end, the end of the world.7、Take a piano, hmm? The keys begin, the keys end. You know there are 88 of them. Nobody can tell you different. They are not infinite8、You are infinite. And on those keys, the music that you can make is infinite.9、I like that. That I can live by.10、You get me up on that gangway and you rill out in front of me a keyboard of millions of keys, Millions and billions of keys that never end.
+                        </p>   
                         <div class="galry">
                             <div class="prices">
                                 <h5 class="item_price">$Data.CD.price RMB</h5>
@@ -146,7 +147,7 @@
                         </div>
                         <div class="tag">
                             #foreach($typeid in $Data.CDtype )
-                                    #if($typeid.id == $Data.CD.typid)
+                                    #if($typeid.id.Tostirng().Replace(" ","").equals($Data.CD.typeid.Tostring().Replace(" ","")))
                                      <p>分类 : <a href="#">$typeid.name </a></p>
                                      <p>主演 : <a href="#">$Data.CD.star </a></p>
                             #end
@@ -173,36 +174,30 @@
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
                                 <div class="related-products">
-                                    <div class="container">
-                                        #foreach($otherCD in $Data.otherCD)
+                                    <div class="container">  
                                         <div class="product-model-sec single-product-grids">
+                                            #foreach($otherCD in $Data.otherCD) 
                                             <div class="product-grid single-product">
-                                                <a href="single.html">
-                                                    <div class="more-product"><span> </span></div>
+                                                <a href="CDinformation.ashx?CDid=$otherCD.id">
                                                     <div class="product-img b-link-stripe b-animate-go  thickbox">
                                                         <img src="$otherCD.imageurl" class="img-responsive" alt="">
-                                                        <div class="b-wrapper">
-                                                            <h4 class="b-animate b-from-left  b-delay03">
-                                                                <button> + </button>
-                                                            </h4>
-                                                        </div>
                                                     </div>
                                                 </a>
                                                 <div class="product-info simpleCart_shelfItem">
                                                     <div class="product-info-cust prt_name">
                                                         <h4>$otherCD.name</h4>
-                                                        <span class="item_price">$otherCD.price</span>
+                                                        <span class="item_price">$otherCD.price RMB</span>
                                                         <div class="ofr">
                                                             <p class="pric1"><del></del></p>
                                                             <p class="disc"></p>
                                                         </div>
                                                         <div class="clearfix"> </div>
                                                     </div>
-                                                </div>
-                                            </div>                                  
+                                                </div>     
+                                            </div> 
+                                             #end                                 
                                             <div class="clearfix"> </div>
-                                        </div>
-                                        #end
+                                        </div>                                    
                                     </div>
                                 </div>
                             </div>

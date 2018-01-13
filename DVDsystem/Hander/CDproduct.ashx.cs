@@ -56,11 +56,22 @@ namespace DVDsystem.Hander
             //-------------------------------------------------分-------页---------------------------------------
 
             int totalcount = 1;
+            bool intjuge =true;
             if (context.Request["keyword"] != null)//搜索框不为空
             {
                 search = context.Request["keyword"];
-                totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from VCD_t where name like '%" + @search + "%' or id=@serch ", new SqlParameter("@search", search));
-
+                try
+                { 
+                int var1 = Convert.ToInt32(search);
+                }
+                catch
+                {
+                    intjuge = false;
+                }
+               if(intjuge)
+                totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from VCD_t where id=@search ", new SqlParameter("@search", search));
+               else
+                totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from VCD_t where name like '%" + @search + "%'", new SqlParameter("@search", search));
             }
             else if (context.Request["categori"] != null)//是否有类别选项     
             {
@@ -103,13 +114,17 @@ namespace DVDsystem.Hander
             if (context.Request["keyword"] != null)// 如果是从搜索框查询
             {
                 search = context.Request["keyword"];
-                CDdetail = SqlHelper.ExecuteDataTable("select * from (select A.id,A.name,A.typeid,A.nownum,A.star,A.price,A.url,A.imageurl,ROW_NUMBER() over( order by A.id asc) as num from VCD_t as A where name like '%" + @search + "%' or A.id=@serch)as s where s.num>@start and s.num<@end",
+                if (intjuge)
+                     CDdetail = SqlHelper.ExecuteDataTable("select * from (select A.id,A.name,A.typeid,A.nownum,A.star,A.price,A.url,A.imageurl,ROW_NUMBER() over( order by A.id asc) as num from VCD_t as A where  A.id=@search)as s where s.num>@start and s.num<@end",
                     new SqlParameter("@search", search), new SqlParameter("@start", (pagenumber - 1) * 9), new SqlParameter("@end", pagenumber * 10));
-
+                else
+                    CDdetail = SqlHelper.ExecuteDataTable("select * from (select A.id,A.name,A.typeid,A.nownum,A.star,A.price,A.url,A.imageurl,ROW_NUMBER() over( order by A.id asc) as num from VCD_t as A where name like '%" + @search + "%')as s where s.num>@start and s.num<@end",
+                 new SqlParameter("@search", search), new SqlParameter("@start", (pagenumber - 1) * 9), new SqlParameter("@end", pagenumber * 10));
             }
             else if (context.Request["categori"] != null)//获取是否有类别选项
             {
                 search = context.Request["categori"];
+               
                 CDdetail = SqlHelper.ExecuteDataTable("select * from (select A.id,A.name,A.typeid,A.nownum,A.star,A.price,A.url,A.imageurl,ROW_NUMBER() over( order by A.id asc) as num from VCD_t as A where A.typeid=@cate)as s where s.num>@start and s.num<@end",
                    new SqlParameter("@start", (pagenumber - 1) * 9), new SqlParameter("@end", pagenumber * 10),new SqlParameter("@cate",search));//取出需要显示的数据块
             }

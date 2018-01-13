@@ -29,7 +29,7 @@
                 <div class="top-right">
                     <ul>
                         #if(!$Data.loginuser.equals(""))
-                        <li class="text"><a class="theme-login" href="javascript:;" onclick="prevent();">$Data.loginuser 已登录</a></li>
+                        <li class="text"><a class="theme-login">$Data.loginuser 已登录</a>&nbsp;&nbsp;<a class="theme-login" onclick="logout()"> 退出登录</a></li>
                         <li class="text"><a class="theme-login" href="../Hander/rentstate.ashx?username=" +$Data.loginuser>我的影碟记录</a></li>
                         #else
                         <li class="text"><a class="theme-login" href="javascript:;" onclick="prevent();">登录</a></li>
@@ -91,7 +91,7 @@
                                     <img src="../Hander/yzheng2.ashx" alt="clickchange" height="25" onclick="getimg()" id="checkimg" />
                                     <div id="checkcodeerror"></div>
                                 </li>
-                                <li>    <input type="checkbox" id="chkRememberPwd" />记住 密码 <input type="checkbox" id="Adminlogin" />管理员登录</li>
+                                <li>   <input type="checkbox" checked="checked" id="chkRememberPwd" />记住 密码 <input type="checkbox" id="Adminlogin" />管理员登录</li>
                                 <li>
                                     <a href="../template/register.html"> <input class="btn btn-primary" type="button" name="submit" value="注册" /></a>
                                     &nbsp;&nbsp;&nbsp;&nbsp;

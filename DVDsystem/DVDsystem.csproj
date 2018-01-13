@@ -91,7 +91,6 @@
     <Content Include="Hander\Helpcilent.ashx" />
     <Content Include="Hander\rentstate.ashx" />
     <Content Include="Hander\yzheng2.ashx" />
-    <Content Include="Hander\Getpassword.ashx" />
     <Content Include="Hander\Login.ashx" />
     <Content Include="Hander\rememberme.ashx" />
     <Content Include="Hander\register.ashx" />
@@ -141,9 +140,6 @@
     </Compile>
     <Compile Include="Hander\CDproduct.ashx.cs">
       <DependentUpon>CDproduct.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Hander\Getpassword.ashx.cs">
-      <DependentUpon>Getpassword.ashx</DependentUpon>
     </Compile>
     <Compile Include="Hander\Helpcilent.ashx.cs">
       <DependentUpon>Helpcilent.ashx</DependentUpon>

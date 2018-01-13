@@ -11,16 +11,16 @@ namespace DVDsystem.Hander
     /// <summary>
     /// CDinformation 的摘要说明
     /// </summary>
-    public class CDinformation : IHttpHandler,IRequiresSessionState
+    public class CDinformation : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/html";
-            string CDid = context.Request["CDid"].ToString().Replace(" ","");
+            string CDid = context.Request["CDid"].ToString().Replace(" ", "");
 
-            if(CDid != null )
-                if(!CDid.Equals(""))
+            if (CDid != null)
+                if (!CDid.Equals(""))
                 {
 
                     string username = "";
@@ -46,83 +46,42 @@ namespace DVDsystem.Hander
                     }
                     //-----------------------------------------------------
 
-                    DataTable CD = SqlHelper.ExecuteDataTable("select * from VCD_t as A where A.id=@CDid",new SqlParameter("@CDid",CDid));
+                    DataTable CD = SqlHelper.ExecuteDataTable("select * from VCD_t as A where A.id=@CDid", new SqlParameter("@CDid", CDid));
                     DataTable CDtype = SqlHelper.ExecuteDataTable("select * from VCD_t");
+                    string trm = "";
                     DataTable otherproduct;
-                    int[] rannumber;
-                    int productnumber = (int)SqlHelper.ExecuteScalar("select count(*) from VCD_t");
-                    if (productnumber < 4)
-                    {
-                        rannumber = getRandomNum(productnumber, 1, productnumber);//随机数取四个数字
-                        if (productnumber == 1)
+
+                    int productnumber = (int)SqlHelper.ExecuteScalar("select count(*) from Record_t");
+
+                    if (productnumber > 4) productnumber = 4;//大于四个最近借出只拿四个
+                      
+                    DataTable result = SqlHelper.ExecuteDataTable("select distinct top "+productnumber+" vcdid, rentdate from Record_t order by rentdate DESC");
+
+                        foreach (DataRow temp in result.Rows)
                         {
-                            otherproduct = SqlHelper.ExecuteDataTable("select * from(select *,ROW_NUMBER() over( order by id asc) as num from VCD_t where num=@num1"
-                             , new SqlParameter("@num1", rannumber[0]));//随机取
+                            if (temp != null)
+                            {
+                                string data = temp["vcdid"].ToString().Replace(" ", "");
+                                trm = trm + data + ",";
+                            }
                         }
-                        else if (productnumber == 2)
-                        {
-                           otherproduct = SqlHelper.ExecuteDataTable("select * from(select *,ROW_NUMBER() over( order by id asc) as num from VCD_t where num=@num1 or num=@num2 "
-                           , new SqlParameter("@num1", rannumber[0]), new SqlParameter("@num2", rannumber[1]));//随机取
-                        }
-                        else
-                        {
-                            otherproduct = SqlHelper.ExecuteDataTable("select * from(select *,ROW_NUMBER() over( order by id asc) as num from VCD_t where num=@num1 or num=@num2 or num=@num3"
-                           , new SqlParameter("@num1", rannumber[0]), new SqlParameter("@num2", rannumber[1]), new SqlParameter("@num3", rannumber[2]));//随机取
-                        }
-                     
-
-                    }
-                    else
-                    {
-
-                        rannumber = getRandomNum(4, 1, productnumber);//随机数取四个数字b
-                        otherproduct = SqlHelper.ExecuteDataTable("select * from(select *,ROW_NUMBER() over( order by id asc) as num from VCD_t where num=@num1 or num=@num2 or num=@num3 or num=@num4"
-                       , new SqlParameter("@num1", rannumber[0]), new SqlParameter("@num2", rannumber[1]), new SqlParameter("@num3", rannumber[2]), new SqlParameter("@num4", rannumber[3]));//随机取
-
-                    }
-
+                        trm = trm.TrimEnd(',');
+                        otherproduct = SqlHelper.ExecuteDataTable("select * from VCD_t where id in (" + trm + ")");//取出对应的vcd信息
 
                     if (CD.Rows.Count > 0)
                     {
-                        var Data = new { CD = CD.Rows[0], CDtype = CDtype.Rows, otherCD = otherproduct, loginuser = loginuser };
+                        var Data = new { CD = CD.Rows[0], CDtype = CDtype.Rows, otherCD = otherproduct.Rows, loginuser = loginuser };
                         string html = CommonHelper.RenderHtml("../template/CDinformation.html", Data);
                         context.Response.Write(html);
                     }
                     else
                         context.Response.Write("erro");
                 }
-          
+                else
+                    context.Response.Write("哎呀！不知道到了什么异世界去了.");
 
 
-        }
-        //------------------------------随机数函数---------------------------------------------------
-        public int[] getRandomNum(int num, int minValue, int maxValue)
-        {
-            Random ra = new Random(unchecked((int)DateTime.Now.Ticks));
-            int[] arrNum = new int[num];
-            int tmp = 0;
-            for (int i = 0; i <= num - 1; i++)
-            {
-                tmp = ra.Next(minValue, maxValue); //随机取数
-                arrNum[i] = getNum(arrNum, tmp, minValue, maxValue, ra); //取出值赋到数组中
-            }
-            return arrNum;
-        }
 
-
-        public int getNum(int[] arrNum, int tmp, int minValue, int maxValue, Random ra)
-        {
-            int n = 0;
-            while (n <= arrNum.Length - 1)
-            {
-                if (arrNum[n] == tmp) //利用循环判断是否有重复
-                {
-                    tmp = ra.Next(minValue, maxValue); //重新随机获取。
-                    getNum(arrNum, tmp, minValue, maxValue, ra);//递归:如果取出来的数字和已取得的数字有重复就重新随机获取。
-                }
-                n++;
-            }
-            return tmp;
         }
 
         public bool IsReusable

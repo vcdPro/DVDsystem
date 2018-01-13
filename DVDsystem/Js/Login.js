@@ -9,7 +9,7 @@
                $('.theme-popover').slideUp(200);
            })
            $('#txtUserName').blur(function () {
-               ajax("../Hander/rememberme.ashx?serch=ture&username=" + document.getElementById('txtUserName'), function (responsetext) {
+               ajax("../Hander/rememberme.ashx?Search="+"ture"+"&username=" + document.getElementById('txtUserName').value, function (responsetext) {
                    document.getElementById('txtPassword').value = responsetext;
                });
                 
@@ -116,8 +116,12 @@ function lastcheck()
             if (document.getElementById('chkRememberPwd').checked == true)
             {
                 var pwd = document.getElementById('txtPassword').value;
-
-                ajax("../Hander/rememberme.ashx?username="+usr+"&password="+pwd, function (responsetext){ });
+                var pwd = document.getElementById('txtPassword').value;
+                var expdate = new Date();
+                expdate.setTime(expdate.getTime() + 14 * (24 * 60 * 60 * 1000));
+                //将用户名和密码写入到Cookie
+                SetCookie(usr, pwd, expdate);
+                ajax("../Hander/rememberme.ashx?remember="+"ture"+"&username=" + usr + "&password=" + pwd, function (responsetext) { });
             }
 
             slideup();
@@ -139,10 +143,8 @@ function GetPwdAndChk() {
     var usr = document.getElementById('txtUserName').value;
     var pwd = GetCookie(usr);
     if (pwd != null) {
-        document.getElementById('chkRememberPwd').checked = true;
         document.getElementById('txtPassword').value = pwd;
     } else {
-        document.getElementById('chkRememberPwd').checked = false;
         document.getElementById('txtPassword').value = "";
     }
 }

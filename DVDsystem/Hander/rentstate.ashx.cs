@@ -55,13 +55,13 @@ namespace DVDsystem.Hander
             if (context.Request["keyword"] != null)//搜索框不为空
             {
                 string search = context.Request["keyword"];
-                totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from VCD_t where name like '%" + @search + "%' or id=@serch " , new SqlParameter("@search", search));
+                totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from VCD_t where name like '%" + @search + "%' or id=@search " , new SqlParameter("@search", search));
 
             }
             else if (context.Request["categori"] != null)//是否有类别选项     
                 {
                 string categori = context.Request["categori"];
-                totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from VCD_t where typid=@categori",new SqlParameter("@categori",categori));//商品总数
+                totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from VCD_t where typeid=@categori",new SqlParameter("@categori",categori));//商品总数
                 }
 
             else if (context.Request["categori"] == null)

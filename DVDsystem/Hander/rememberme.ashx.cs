@@ -22,10 +22,15 @@ namespace DVDsystem.Hander
                 context.Session[username] = password;
                 context.Response.Write("ok");
             }
-            else if (context.Request["search"] != null)
+            else if (context.Request["Search"] != null)
             {
                 string user = context.Request["username"].ToString().Replace(" ", "");
-                string password = context.Session[user].ToString().Replace(" ","");
+                string password = "";
+                HttpCookie pass = context.Request.Cookies["user"];
+                 if (pass != null)
+                    password = pass.Value.ToString().Replace(" ", "");
+                 if (context.Session[user] != null)
+                    password = context.Session[user].ToString().Replace(" ","");
                 context.Response.Write(password);
 
             }

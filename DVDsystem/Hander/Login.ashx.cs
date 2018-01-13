@@ -19,14 +19,19 @@ namespace DVDsystem.Hander
             context.Response.ContentType = "text/html";
 
             string deletesesion = context.Request["deletesesion"];
+            string username ;
+            string password ;
+            string checkcode ;
+            string Admin ;
 
-            string username = context.Request["username"];
-            string password = context.Request["password"];
-            string checkcode = context.Request["checkcode"];
-            string Admin = context.Request["Admin"].ToString().Replace(" ","");
 
             if (deletesesion == null)
             {
+                username = context.Request["username"];
+                password = context.Request["password"];
+                checkcode = context.Request["checkcode"];
+                Admin = context.Request["Admin"].ToString().Replace(" ", "");
+
                 if (!checkcode.Equals(context.Session["check"]))
                 {
                     context.Response.Write("checkcodeerror");
