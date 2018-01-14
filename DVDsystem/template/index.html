@@ -35,8 +35,8 @@
                 <div class="top-right">
                     <ul>
                         #if(!$Data.loginuser.equals(""))
-                        <li class="text"><a class="theme-login" >$Data.loginuser 已登录</a>&nbsp;&nbsp;<a class="theme-login" onclick="logout()"> 退出登录</a></li>
-                        <li class="text"><a class="theme-login" href="../Hander/rentstate.ashx?username=" +$Data.loginuser>我的影碟记录</a></li>
+                        <li class="text"><a class="theme-login">$Data.loginuser 已登录</a>&nbsp;&nbsp;<a class="theme-login" onclick="logout()"> 退出登录</a></li>
+                        <li class="text"><a class="theme-login" href="../Hander/rentstate.ashx?Rsearch=$Data.loginuser">我的影碟记录</a></li>
                         #else
                         <li class="text"><a class="theme-login" href="javascript:;" onclick="prevent();">登录</a></li>
                         <li class="text"><a class="theme-login" href="../template/register.html">注册</a></li>
@@ -80,8 +80,8 @@
                 <div class="search-box">
                     <div id="sb-search" class="sb-search">
                         <form>
-                            <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
-                            <input class="sb-search-submit" type="submit" value="" onclick="search()">
+                            <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search" />
+                            <input class="sb-search-submit" type="button" onclick="searchfor()" value="" />
                             <span class="sb-icon-search"> </span>
                         </form>
                     </div>

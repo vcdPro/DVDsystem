@@ -74,11 +74,16 @@
     <Content Include="css\jquery.idealforms.min.css" />
     <Content Include="css\login.css" />
     <Content Include="image\01.jpg" />
+    <Content Include="image\12.png" />
+    <Content Include="image\14.png" />
     <Content Include="image\34.png" />
+    <Content Include="image\13.png" />
     <Content Include="Js\html5shiv.js" />
     <Content Include="Js\jquery.idealforms.js" />
     <Content Include="Js\jquery.min.js" />
     <Content Include="Js\Login.js" />
+    <Content Include="template\Helpcilentintro.html" />
+    <Content Include="template\Helpcilentrent.html" />
     <Content Include="upload\pic\1.jpg" />
     <Content Include="upload\pic\2.jpg" />
     <Content Include="upload\MV\02.mp4" />

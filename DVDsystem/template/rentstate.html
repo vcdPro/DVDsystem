@@ -17,6 +17,19 @@
     <script type="text/javascript"src="../Js/uisearch.js"></script>
     <script type="text/javascript"src="../Js/owl.carousel.js"></script>
     <script type="text/javascript" src="../Js/Login.js"></script>
+    <script type="text/javascript" src="../ajax.js"></script>
+
+    <script type="text/javascript">
+
+        function DVDsearch()
+        {
+            var st = document.getElementById("Dsearch").value;
+            if (st != "")
+            {
+                window.location.href = "../Hander/rentstate.ashx?Rsearch=" + st;
+            }
+        }
+    </script>
 
     <style type="text/css">
         #my-form {
@@ -64,7 +77,7 @@
                     <ul>
                         #if(!$Data.loginuser.equals(""))
                         <li class="text"><a class="theme-login">$Data.loginuser 已登录</a>&nbsp;&nbsp;<a class="theme-login" onclick="logout()"> 退出登录</a></li>
-                        <li class="text"><a class="theme-login" href="../Hander/rentstate.ashx?username=" +$Data.loginuser>我的影碟记录</a></li>
+                        <li class="text"><a class="theme-login" href="../Hander/rentstate.ashx?Rsearch=$Data.loginuser">我的影碟记录</a></li>
                         #else
                         <li class="text"><a class="theme-login" href="javascript:;" onclick="prevent();">登录</a></li>
                         <li class="text"><a class="theme-login" href="../template/register.html">注册</a></li>
@@ -146,22 +159,123 @@
     <!----------------------------------------------------------------------------------------------------------------------------------->
     <div id="my-form">
         <div id="search">
-            <input type="search" name="search" placeholder="输入影碟编号/名称进行查询" />
-            <input type="button" value="查询">
+            <input type="search"  id="Dsearch"  name="search" placeholder="输入影碟编号/用户名进行查询" />
+            <input type="button" value="查询" onclick="DVDsearch()">
         </div>
         <div id="show">
 
             <table width="620px" cellspacing="0" cellpadding="5" border="1">
                 <tr bgcolor="#CCCCCC">
-                    <th width="220" align="left">影碟名称 </th>
-                    <th width="180" align="left">影碟ID </th>
+                    <th width="100" align="left">订单编号 </th>
+                    <th width="100" align="left">借阅用户 </th>
+                    <th width="100" align="left">影碟ID </th>
+                    <th width="100" align="left">影碟名称 </th>
                     <th width="100" align="center">出借日期 </th>
-                    <th width="80" align="right">出借押金 </th>
-                    <th width="100" align="right">借出用户 </th>
+                    <th width="100" align="right">出借押金 </th>
+                    <th width="100" align="center">归还日期 </th>
+                    <th width="100" align="right">出借租金 </th>
+                    <th width="50" align="right">订单情况 </th>
                 </tr>
-                #foreach($until in $Data.rent)
+                    #foreach($Rdata in $Data.Rdata)
+                   <tr bgcolor="white">
+                        <th width="100" align="left">$Rdata.id </th>
 
-            </table>
+                       #foreach($Ruser in $Data.Username)
+                            #if($Rdata.userid.equals($Ruser.id))
+                                <th width="100" align="left">$Ruser.name </th>
+                            #end
+                       #end
+                            <th width="100" align="left">$Rdata.vcdid </th>
+
+                       #foreach($DVD in $Data.DVD)
+                           #if($DVD.id.equals($Rdata.vcdid))
+                                <th width="100" align="left">$DVD.name</th>
+                            #end
+                       #end 
+                            <th width="100" align="center">$Rdata.rentdate </th>
+                            <th width="100" align="right">$Rdata.depositprice </th>
+                             #if(!$Rdata.returndate)
+                            <th width="100" align="center">$Rdata.returndate </th>
+                             #else
+                                 <th width="100" align="center">尚未归还 </th>
+                             #end
+
+                               #if(!$Rdata.rentprice )
+                               <th width="100" align="center">$Rdata.rentprice </th>
+                               #else
+                               <th width="100" align="center">????? </th>
+                               #end
+
+                            #if($Rdata.state == 1)
+                                <th width="50" align="right">未完成 </th>
+                            #else
+                                <th width="50" align="right">已完成 </th>
+                            #end
+                    </tr>
+                    #end
+
+
+
+
+                #if($Data.search && !$Data.search.equals("") )
+
+                <div id="fy">
+                    共 $Data.fy.totalcount 件/第  $Data.fy.pagenumber/$Data.fy.pagecount页
+                    <a href="../Hander/rentstate.ashx?pagenumber=1&Rsearch=$Data.search">  首页 </a>
+
+
+                    #if($Data.fy.pagenumber>1)
+                    #set($PastPageNum=$Data.fy.pagenumber-1)
+                    <a href="../Hander/rentstate.ashx?pagenumber=$PastPageNum&Rsearch=$Data.search"> 上一页|</a>
+                    #end
+
+                    <!--输出页表-->
+                    #foreach($page in $Data.fy.pagedata)
+                    #if($page.Title==$Data.fy.pagenumber)
+
+                    <span style="font-size: 17px;">$page.Title</span>
+                    #else
+                    <a href="$page.Href">$page.Title</a>
+                    #end
+                    #end
+                    <!--输出前后页-->
+                    #if($Data.fy.pagenumber< $Data.fy.pagecount) #set($nextPageNum=$Data.fy.pagenumber+1)
+                    <a href="../Hander/rentstate.ashx?pagenumber=$nextPageNum&Rsearch=$Data.search"> |下一页</a>
+                    #end
+                    <a href="../Hander/rentstate.ashx?pagenumber=$Data.fy.pagecount&Rsearch=$Data.search">  尾页</a>
+
+                </div>
+
+                #else
+                <div id="fy">
+                    共 $Data.fy.totalcount 件/第  $Data.fy.pagenumber/$Data.fy.pagecount页
+                    <a href="../Hander/rentstate.ashx?pagenumber=1">  首页 </a>
+
+
+                    #if($Data.fy.pagenumber>1)
+                    #set($PastPageNum=$Data.fy.pagenumber-1)
+                    <a href="../Hander/rentstate.ashx?pagenumber=$PastPageNum"> 上一页|</a>
+                    #end
+
+                    <!--输出页表-->
+                    #foreach($page in $Data.fy.pagedata)
+                    #if($page.Title==$Data.fy.pagenumber)
+
+                    <span style="font-size: 17px;">$page.Title</span>
+                    #else
+                    <a href="$page.Href">$page.Title</a>
+                    #end
+                    #end
+                    <!--输出前后页-->
+                    #if($Data.fy.pagenumber< $Data.fy.pagecount) #set($nextPageNum=$Data.fy.pagenumber+1)
+                    <a href="../Hander/rentstate.ashx?pagenumber=$nextPageNum"> |下一页</a>
+                    #end
+                    <a href="../Hander/rentstate.ashx?pagenumber=$Data.fy.pagecount">  尾页</a>
+
+                </div>
+                #end
+
+</table>
         </div>
 
     </div>

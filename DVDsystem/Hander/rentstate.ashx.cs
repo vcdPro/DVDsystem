@@ -17,10 +17,10 @@ namespace DVDsystem.Hander
 
         public void ProcessRequest(HttpContext context)
         {
-            context.Response.ContentType = "text/html";
-
             Regex check = new Regex(@"^\d*$");
-            int pagenumber=1;
+            int pagenumber = 1;
+            string search="";
+
             //-------------------------------------------登录检查-----------------------
             string username = "";
             string username2 = "";
@@ -50,35 +50,94 @@ namespace DVDsystem.Hander
                 pagenumber = int.Parse(context.Request["pagenumber"]);
             }
             //-------------------------------------------------分-------页---------------------------------------
-            
+
             int totalcount = 1;
-            if (context.Request["keyword"] != null)//搜索框不为空
+            bool intjuge = true;
+        
+            if (context.Request["Rsearch"] != null)//搜索框不为空
             {
-                string search = context.Request["keyword"];
-                totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from VCD_t where name like '%" + @search + "%' or id=@search " , new SqlParameter("@search", search));
-
-            }
-            else if (context.Request["categori"] != null)//是否有类别选项     
+                search = context.Request["Rsearch"];
+                try
                 {
-                string categori = context.Request["categori"];
-                totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from VCD_t where typeid=@categori",new SqlParameter("@categori",categori));//商品总数
+                    int var1 = Convert.ToInt32(search);
                 }
-
-            else if (context.Request["categori"] == null)
-
-                totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from VCD_t ");//商品总数
-
+                catch
+                {
+                    intjuge = false;
+                }
+                if (intjuge)
+                    totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from Record_t where vcdid=@temp",new SqlParameter("@temp",search));
+                else
+                { 
+                    DataTable Uresult=SqlHelper.ExecuteDataTable("select id from User_t where name like '%" + @search + "%'", new SqlParameter("@search", search));
+                    string trm = "";
+                    foreach(DataRow dt in Uresult.Rows)
+                        {
+                        if( dt != null)
+                        trm = trm + dt["id"].ToString().Replace(" ", "") + ",";
+                         }
+                    trm=trm.TrimEnd(',');
+                    totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from Record_t where userid in ("+trm+")");
+                 }
+            }
+            else 
+                totalcount = (int)SqlHelper.ExecuteScalar("select count(*) from Record_t");
 
             int pagecount = (int)Math.Ceiling(totalcount / 9.0);//页码取整
 
             object[] pagedata = new object[pagecount];
+            
 
-            for (int i = 0; i < pagecount; i++)//数组下标从0开始
+            if (context.Request["Rsearch"] != null)
             {
-                pagedata[i] = new { Href = "../template/rentstate.ashx?pagenumber=" + (i + 1), Title = i + 1 };//封装页码链接
+                for (int i = 0; i < pagecount; i++)//数组下标从0开始
+                {
+                    pagedata[i] = new { Href = "../Hander/rentstate.ashx?Rsearch=" + search + "&pagenumber=" + (i + 1), Title = i + 1 };//封装页码链接
+                }
             }
+            else
+                for (int i = 0; i < pagecount; i++)//数组下标从0开始
+                {
+                    pagedata[i] = new { Href = "../Hander/rentstate.ashx?pagenumber=" + (i + 1), Title = i + 1 };//封装页码链接
+                }
+
 
             var fy = new { pagedata = pagedata, totalcount = totalcount, pagenumber = pagenumber, pagecount = pagecount };//把分页的数据封装存好
+
+            DataTable Rdata = new DataTable();
+
+            if (context.Request["Rsearch"] != null)// 如果是从搜索框查询
+            {
+                search = context.Request["Rsearch"];
+                if (intjuge)
+                        Rdata = SqlHelper.ExecuteDataTable("select * from (select A.id,A.userid,A.vcdid,A.rentdate,A.returndate,A.rentprice,A.depositprice,A.state,ROW_NUMBER() over( order by A.id asc) as num from Record_t as A where  A.id=@search)as s where s.num>@start and s.num<@end",
+                   new SqlParameter("@search", search), new SqlParameter("@start", (pagenumber - 1) * 9), new SqlParameter("@end", pagenumber * 10));
+                else
+                    {
+                        DataTable Uresult = SqlHelper.ExecuteDataTable("select id from User_t where name like '%" + @search + "%'", new SqlParameter("@search",search));
+                        string trm = "";
+                        foreach (DataRow dt in Uresult.Rows)
+                        {
+                            if (dt != null)
+                                trm = trm + dt["id"].ToString().Replace(" ", "") + ",";
+                        }
+                        trm=trm.TrimEnd(',');
+                        Rdata = SqlHelper.ExecuteDataTable("select * from (select A.id,A.userid,A.vcdid,A.rentdate,A.returndate,A.rentprice,A.depositprice,A.state,ROW_NUMBER() over( order by A.id asc) as num from Record_t as A where A.userid in (" + trm + "))as s where s.num>@start and s.num<@end",
+                         new SqlParameter("@start", (pagenumber - 1) * 9), new SqlParameter("@end", pagenumber * 10));
+                    }
+
+            }
+            else
+            {
+                    Rdata = SqlHelper.ExecuteDataTable("select * from (select A.id,A.userid,A.vcdid,A.rentdate,A.returndate,A.rentprice,A.depositprice,A.state,ROW_NUMBER() over( order by A.id asc) as num from Record_t as A )as s where s.num>@start and s.num<@end",
+                 new SqlParameter("@start", (pagenumber - 1) * 9), new SqlParameter("@end", pagenumber * 10));//取出需要显示的数据块
+            }
+            DataTable Username = SqlHelper.ExecuteDataTable("select * from User_t");
+            DataTable DVD = SqlHelper.ExecuteDataTable("select * from VCD_t");
+
+            var Data = new { Rdata = Rdata.Rows, Username= Username.Rows , DVD = DVD.Rows, loginuser = loginuser, fy = fy,search=search};
+            string html = CommonHelper.RenderHtml("../template/rentstate.html", Data);
+            context.Response.Write(html);
         }
 
         public bool IsReusable

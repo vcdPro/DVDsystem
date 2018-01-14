@@ -28,7 +28,7 @@
                     <ul>
                         #if(!$Data.loginuser.equals(""))
                         <li class="text"><a class="theme-login">$Data.loginuser 已登录</a>&nbsp;&nbsp;<a class="theme-login" onclick="logout()"> 退出登录</a></li>
-                        <li class="text"><a class="theme-login" href="../Hander/rentstate.ashx?username=" +$Data.loginuser>我的影碟记录</a></li>
+                        <li class="text"><a class="theme-login" href="../Hander/rentstate.ashx?Rsearch=$Data.loginuser">我的影碟记录</a></li>
                         #else
                         <li class="text"><a class="theme-login" href="javascript:;" onclick="prevent();">登录</a></li>
                         <li class="text"><a class="theme-login" href="../template/register.html">注册</a></li>
@@ -129,8 +129,11 @@
               
                     </div>
                     <div class="col-md-4 single-grid simpleCart_shelfItem">
-                        <h3>$Data.CD.name</h3>
-                        <p>It was all very final on that gangway and I was grant too in my over coat. I cut quite a figure, and I was getting off, guaranteed. That wasn't the problem.4、It wasn't what I saw that stopped me, Max, it was what I didn't see. Do you understand that? What I didn't see.5、In all that sprawling city, there was everything except an end. There was no end.6、What I did not see was where the whole thing came to an end, the end of the world.7、Take a piano, hmm? The keys begin, the keys end. You know there are 88 of them. Nobody can tell you different. They are not infinite8、You are infinite. And on those keys, the music that you can make is infinite.9、I like that. That I can live by.10、You get me up on that gangway and you rill out in front of me a keyboard of millions of keys, Millions and billions of keys that never end.
+                        <h3>影片: $Data.CD.name</h3>
+                        <p>影片编号: $Data.CD.id</p>
+                        <p>可租借量: $Data.CD.nownum</p>
+                        <p>影片目录: $Data.CD.url</p>
+                        <p>It was all very final on that gangway and I was grant too in my over coat. I cut quite a figure, and I was getting off, guaranteed. That wasn't the problem.4、It wasn't what I saw that stopped me, Max, it was what I didn't see. Do you understand that? What I didn't see.5、In all that sprawling city, there was everything except an end. There was no end.6、What I did not see was where the whole thing came to an end, the end of the world.7、Take a piano, hmm? The keys begin,It wasn't what I saw that stopped me, Max, it was what I didn't see. Do you understand that? What I didn't see.5、In all that sprawling city, there was everything except an end. There was no end.
                         </p>   
                         <div class="galry">
                             <div class="prices">

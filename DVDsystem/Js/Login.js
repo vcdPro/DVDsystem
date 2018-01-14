@@ -23,7 +23,20 @@ window.onload = function onLoginLoaded()
 
 }
 
+function searchfor()
+{
 
+var keyword = document.getElementById("search").value;
+if (keyword != "")
+    window.location.href = "../Hander/CDproduct.ashx?keyword=" + keyword;
+}
+
+function DVDsearch() {
+    var st = document.getElementById("Dsearch").value;
+    if (st != "") {
+        window.location.href = "../Hander/rentstate.ashx?Rsearch=" + st;
+    }
+}
 function getimg() {//我们就是通过这个函数来异步获取信息的
     document.getElementById("checkimg").src = "../Hander/yzheng2.ashx?" + Math.random();
 }

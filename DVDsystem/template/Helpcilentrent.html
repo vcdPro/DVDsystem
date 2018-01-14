@@ -6,28 +6,18 @@
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="../css/owl.carousel.css" rel="stylesheet">
-    <link href="../css/login.css"rel="stylesheet" />
+    <link href="../css/login.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="../Js/jquery.min.js"></script>
     <script type="text/javascript" src="../Js/bootstrap-3.1.1.min.js"></script>
     <script type="text/javascript" src="../Js/jquery.jscrollpane.min.js"></script>
-    <script type="text/javascript"src="../Js/uisearch.js"></script>
-    <script type="text/javascript"src="../Js/classie.js"></script>
+    <script type="text/javascript" src="../Js/uisearch.js"></script>
+    <script type="text/javascript" src="../Js/classie.js"></script>
     <link href="../css/form.css" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="../Js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="../Js/Login.js"></script>
-    <script type="text/javascript" src="../ajax.js"></script>
 
-    <script type="text/javascript">
-             function searchfor()
-             {
-
-                 var keyword = document.getElementById("search").value;
-                 if (keyword != "")
-                     window.location.href="../Hander/CDproduct.ashx?keyword=" + keyword;
-        }
-    </script>
 </head>
 
 
@@ -118,14 +108,14 @@
                 <div class="search-box">
                     <div id="sb-search" class="sb-search">
                         <form>
-                            <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search"/>
+                            <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search" />
                             <input class="sb-search-submit" type="button" onclick="searchfor()" value="" />
                             <span class="sb-icon-search"> </span>
                         </form>
                     </div>
                 </div>
 
-                <script> new UISearch(document.getElementById('sb-search')); </script>
+                <script> new UISearch( document.getElementById( 'sb-search' ) ); </script>
 
                 <div class="clearfix"></div>
             </div>
@@ -135,142 +125,51 @@
     <div class="content">
         <div class="product-model">
             <div class="container">
-                <h2> 查询结果</h2>
+
                 <div class="rsidebar span_1_of_left">
                     <section class="sky-form">
                         <div class="product_right">
-                            <h4 class="m_2"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>类别</h4>
+                            <h4 class="m_2"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>帮助中心</h4>
                             <div class="tab1">
-                                #foreach($cate in $Data.catedata)
                                 <ul class="place">
-                                    <a href="../Hander/CDproduct.ashx?categori=$cate.id"><li class="sort">$cate.name</li></a>
+                                    <li class="sort">系统总览</li>
+                                    <li class="by"><img src="../image/do.png" alt=""></li>
                                     <div class="clearfix"> </div>
                                 </ul>
-                                #end
-
-                            </div>
-                    </section>
-                </div>
-                <div class="col-md-9 product-model-sec">
-                    
-                    #foreach($CD in $Data.CDdetail)
-                    <a href="../Hander/CDinformation.ashx?CDid=$CD.id">
-                        <div class="product-grid">
-                            <div class="more-product"><span> </span></div>
-                            <div class="product-img b-link-stripe b-animate-go  thickbox">
-                                <img src="$CD.imageurl" class="img-responsive" alt="">
-                                <div class="b-wrapper">                         
+                                <div class="single-bottom">
+                                    <a href="../Hander/Helpcilent.ashx?"><p>影碟介绍</p></a>
+                                    <a href="../Hander/Helpcilent.ashx?rentstate=te"><p>出借情况</p></a>
+                                    <a href="../Hander/Helpcilent.ashx?usercilent=te"><p>用户中心</p></a>
                                 </div>
                             </div>
-                    </a>
-                    <div class="product-info simpleCart_shelfItem">
-                        <div class="product-info-cust prt_name">
-                            <h4>$CD.name</h4>
-                            <span class="item_price">$CD.price RMB</span>
-                            <div class="ofr">
-                                <p class="pric1"><del></del></p>
-                                <p class="disc"></p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
+                    </section>
+                    <div class="rsidebar span_1_of_left">
+
+                        <img src="../image/14.png" width="800" height="400" />
+                        出借情况可以根据用户的名字或者影碟id进行订单查询，页面可以登录。
                     </div>
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+        <a href="single.html">
+            <div class="product-grid">
+                <div class="more-product"><span> </span></div>
+                <div class="product-img b-link-stripe b-animate-go  thickbox">
+                    <img src="images/m8.jpg" class="img-responsive" alt="" />
+                    <div class="b-wrapper">
+                        <h4 class="b-animate b-from-left  b-delay03">
+                            <button> + </button>
+                        </h4>
                     </div>
-                #end
-
-
-                <!----分页-->
-                #if($Data.keyword)
-                <div id="fy">
-                    共 $Data.fy.totalcount 件/第  $Data.fy.pagenumber/$Data.fy.pagecount页
-                    <a href="../Hander/CDproduct.ashx?pagenumber=1&keyword=$Data.keyword">  首页 </a>
-
-
-                    #if($Data.fy.pagenumber>1)
-                    #set($PastPageNum=$Data.fy.pagenumber-1)
-                    <a href="../Hander/CDproduct.ashx?pagenumber=$PastPageNum&keyword=$Data.keyword"> 上一页|</a>
-                    #end
-
-                    <!--输出页表-->
-                    #foreach($page in $Data.fy.pagedata)
-                    #if($page.Title==$Data.fy.pagenumber)
-
-                    <span style="font-size: 17px;">$page.Title</span>
-                    #else
-                    <a href="$page.Href&keyword=$Data.keyword">$page.Title</a>
-                    #end
-                    #end
-                    <!--输出前后页-->
-                    #if($Data.fy.pagenumber<$Data.fy.pagecount) #set($nextPageNum=$Data.fy.pagenumber+1)
-                                       <a href="../Hander/CDproduct.ashx?pagenumber=$nextPageNum&keyword=$Data.keyword"> |下一页</a>
-                             #end
-                                    <a href="../Hander/CDproduct.ashx?pagenumber=$Data.fy.pagecount&keyword=$Data.keyword">  尾页</a>
-
                 </div>
-
-                #elseif($Data.categori)
-
-                <div id="fy">
-                    共 $Data.fy.totalcount 件/第  $Data.fy.pagenumber/$Data.fy.pagecount页
-                    <a href="../Hander/CDproduct.ashx?pagenumber=1&categori=$Data.categori">  首页 </a>
-
-
-                    #if($Data.fy.pagenumber>1)
-                    #set($PastPageNum=$Data.fy.pagenumber-1)
-                    <a href="../Hander/CDproduct.ashx?pagenumber=$PastPageNum&categori=$Data.categori"> 上一页|</a>
-                    #end
-
-                    <!--输出页表-->
-                    #foreach($page in $Data.fy.pagedata)
-                    #if($page.Title==$Data.fy.pagenumber)
-
-                    <span style="font-size: 17px;">$page.Title</span>
-                    #else
-                    <a href="$page.Href&categori=$Data.categori">$page.Title</a>
-                    #end
-                    #end
-                    <!--输出前后页-->
-                    #if($Data.fy.pagenumber< $Data.fy.pagecount) #set($nextPageNum=$Data.fy.pagenumber+1)
-                                       <a href="../Hander/CDproduct.ashx?pagenumber=$nextPageNum&categori=$Data.categori"> |下一页</a>
-                             #end
-                                    <a href="../Hander/CDproduct.ashx?pagenumber=$Data.fy.pagecount&categori=$Data.categori">  尾页</a>
-
-                </div>
-
-                #else
-                <div id="fy">
-                    共 $Data.fy.totalcount 件/第  $Data.fy.pagenumber/$Data.fy.pagecount页
-                    <a href="../Hander/CDproduct.ashx?pagenumber=1">  首页 </a>
-
-
-                    #if($Data.fy.pagenumber>1)
-                    #set($PastPageNum=$Data.fy.pagenumber-1)
-                    <a href="../Hander/CDproduct.ashx?pagenumber=$PastPageNum"> 上一页|</a>
-                    #end
-
-                    <!--输出页表-->
-                    #foreach($page in $Data.fy.pagedata)
-                    #if($page.Title==$Data.fy.pagenumber)
-
-                    <span style="font-size: 17px;">$page.Title</span>
-                    #else
-                    <a href="$page.Href">$page.Title</a>
-                    #end
-                    #end
-                    <!--输出前后页-->
-                    #if($Data.fy.pagenumber< $Data.fy.pagecount) #set($nextPageNum=$Data.fy.pagenumber+1)
-                                       <a href="../Hander/CDproduct.ashx?pagenumber=$nextPageNum"> |下一页</a>
-                             #end
-                                    <a href="../Hander/CDproduct.ashx?pagenumber=$Data.fy.pagecount">  尾页</a>
-
-                </div>
-                #end
-
- 
-    
-    </div>
-    </div>
-   
+        </a>
 
 </body>
-
 </html>
